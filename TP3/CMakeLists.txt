@@ -1,0 +1,16 @@
+cmake_minimum_required(VERSION 3.20)
+project(td3)
+
+add_executable(exo1_4 1.4.cc 1.4.main.cc 1.4.test.cc)
+target_compile_features(exo1_4 PUBLIC cxx_std_11)
+add_executable(exo1_5 1.5.cc 1.5.test.cc)
+target_compile_features(exo1_5 PUBLIC cxx_std_11)
+add_executable(exo1_6 1.6.cc 1.6.test.cc)
+target_compile_features(exo1_6 PUBLIC cxx_std_11)
+
+add_executable(exo2_1 2.1.h 2.1.test.cc 2.1.cc)
+target_compile_features(exo2_1 PUBLIC cxx_std_11)
+add_executable(exo2_2 2.2.h 2.2.test.cc 2.2.cc)
+target_compile_features(exo2_2 PUBLIC cxx_std_11)
+add_executable(exo2_3 2.3.h 2.3.test.cc 2.3.cc)
+target_compile_features(exo2_3 PUBLIC cxx_std_11)

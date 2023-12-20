@@ -1,0 +1,1 @@
+Comme on rend le paramètre a optionnel, il y a deux définitions possibles de la fonction a et donc cela produit une erreur.
