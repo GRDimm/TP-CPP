@@ -1,3 +1,8 @@
+#include <vector>
+#include <memory>
+
+using namespace std;
+
 class Hat {
  public:
   Hat() {  ++num_hats_global_; }
@@ -9,13 +14,10 @@ class Hat {
 
 class HatFactory {
  public:
-  // The factory constructs a new hat, and gives me a pointer to the
-  // newly constructed object. The caller does not own the Hat.
   Hat* NewHat();
 
-  // All hats ever constructed are destructed when the factory is destructed.
   ~HatFactory();
 
  private:
-  // TODO
+   vector<unique_ptr<Hat>> hats_;
 };
