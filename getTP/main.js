@@ -7,6 +7,8 @@ const url = require('url');
 const baseUrl = 'http://vljn.me/#/virtual/td' + process.argv[2];
 const targetFolder = './../TP' + process.argv[2];
 
+console.log("Downloading TP " + process.argv[2] + " into " + targetFolder);
+
 // Ensure the target folder exists
 if (!fs.existsSync(targetFolder)) {
     fs.mkdirSync(targetFolder);
@@ -21,7 +23,7 @@ const downloadFile = async (fileUrl, outputPath) => {
         });
 
         response.data.pipe(fs.createWriteStream(outputPath));
-        console.log(`Downloaded: ${outputPath}`);
+        //console.log(`Downloaded: ${outputPath}`);
     } catch (error) {
         console.error(`Error downloading ${fileUrl}: ${error.message}`);
     }
@@ -43,21 +45,25 @@ const findAndDownloadFiles = async (page) => {
 const clickButton = async (page, buttonText) => {
     const [button] = await page.$x(`//button[contains(text(), '${buttonText}')]`);
     if (button) {
+        console.log(buttonText);
         await button.click();
         await page.waitForTimeout(1000); // Adjust timeout as necessary
         return true;
     } else {
-        console.log(`Button with text "${buttonText}" not found`);
+        console.log(`Finished.`);
         return false;
     }
 };
 
 const getFiles = async () => {
+    console.log("Starting browser.");
     const browser = await puppeteer.launch({ headless: "new" });
     const page = await browser.newPage();
     await page.goto(baseUrl, { waitUntil: 'networkidle0' });
 
     // Download files from the base page first
+    
+    
     await findAndDownloadFiles(page);
 
     // Click on specific buttons and download files
